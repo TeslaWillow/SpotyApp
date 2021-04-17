@@ -12,6 +12,9 @@ import { ArtistComponent } from './pages/artist/artist.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 
+//Pipes
+import { NoImagePipe } from './pipes/no-image.pipe';
+
 
 @NgModule({
   declarations: [
@@ -20,7 +23,8 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.com
     SearchComponent,
     ArtistComponent,
     NavbarComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    NoImagePipe
   ],
   imports: [
     BrowserModule,

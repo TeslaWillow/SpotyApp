@@ -1,1 +1,32 @@
-<p>search works!</p>
+<div class="row">
+    <div class="col">
+        <input #termino 
+               type="text" 
+               (keyup)="buscar(termino.value)" 
+               class="form-control" 
+               placeholder="Buscar artista">
+    </div>
+</div>
+
+<div class="row">
+    <!-- Cards -->
+    <ng-container *ngIf="artists">
+        <div class="col-sm-6 col-md-4 col-lg-3" *ngFor="let artist of artists">
+            <div class="card bg-dark my-3">
+                <img [src]="artist.images | noImage" class="card-img-top" [alt]="artist.name">
+                <div class="card-body">
+                <h5 class="card-title text-white">{{artist.name}}</h5>
+                <div class="my-2">
+                    <span class="badge rounded-pill bg-success" *ngFor="let genre of artist.genres | slice:0:3">{{genre | titlecase}}</span>
+                </div>
+                <div class="d-grid">
+                    <a href="#" class="btn btn-outline-success btn-block">Go to artist</a>
+                </div>
+                </div>
+                <div class="card-footer text-muted text-center">
+                    Followers: {{artist.followers.total | number}}
+                </div>
+            </div>
+            </div>
+    </ng-container>
+</div>
