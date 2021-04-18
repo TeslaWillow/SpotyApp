@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { map } from 'rxjs/operators';
+import { delay, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SpotifyService {
 
-  private token:string = "BQCbRsVsYSM9we7imnVNjhwIriXtiegYDontobfXGhdJf4Yl364TBtcwaBx9FxYo-UwfEsWkPo9si9oizzU";
+  private token:string = "BQBtv3-hoqU-RmZvjN1sv5vTCtUmVJLSQV4PuHpeIZo3-0sLouuOY7nTRuC7MQcgHrrElIQPBqRgbmGSvfw";
 
   constructor(
     private http:HttpClient
@@ -28,14 +28,14 @@ export class SpotifyService {
   getNewReleases(){
     return this.getQuery("browse/new-releases")
             .pipe( 
-              map( (data:any) => data.albums.items) 
+              map( (data:any) => data.albums.items)
             );
   }
 
   getArtist(term:string){
     return this.getQuery(`search?q=${term}&type=artist&limit=10`)
             .pipe( 
-              map( (data:any) => data.artists.items) 
+              map( (data:any) => data.artists.items)
             );
   }
 

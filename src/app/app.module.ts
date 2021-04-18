@@ -14,6 +14,7 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.com
 
 //Pipes
 import { NoImagePipe } from './pipes/no-image.pipe';
+import { LoadingComponent } from './shared/loading/loading.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { NoImagePipe } from './pipes/no-image.pipe';
     ArtistComponent,
     NavbarComponent,
     PageNotFoundComponent,
-    NoImagePipe
+    NoImagePipe,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,

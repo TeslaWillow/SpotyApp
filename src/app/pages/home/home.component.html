@@ -1,12 +1,15 @@
 <div class="row">
-    <ng-container *ngIf="albums">
-        <div class="col-sm-6 col-md-4 col-lg-3" *ngFor="let album of albums">
+    <ng-container *ngIf="loading">
+      <app-loading></app-loading>
+    </ng-container>
+    <ng-container *ngIf="!loading">
+        <div class="col-sm-6 col-md-4 col-lg-3 animated fadeIn" *ngFor="let album of albums">
             <div class="card bg-dark my-3">
               <img [src]="album.images | noImage" class="card-img-top" [alt]="album.name">
               <div class="card-body">
                 <h5 class="card-title text-white">{{album.name}}</h5>
                 <div class="my-2">
-                    <span class="badge rounded-pill bg-success" *ngFor="let artist of album.artists">{{artist.name}}</span>
+                    <span class="badge rounded-pill bg-success" *ngFor="let artist of album.artists | slice:0:3">{{artist.name}}</span>
                 </div>
                 <div class="d-grid">
                     <a href="#" class="btn btn-outline-success btn-block">Go to album</a>

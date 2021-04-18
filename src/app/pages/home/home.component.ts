@@ -11,14 +11,15 @@ export class HomeComponent implements OnInit {
   title = 'Home';
   
   public albums:any[] = [];
+  public loading:boolean = true;
 
   constructor(
     private _spotify:SpotifyService
   ) { 
     _spotify.getNewReleases().subscribe(
       (res:any) => {
-        console.log(res);
         this.albums = res;
+        this.loading = false;
       }
     );
   }
