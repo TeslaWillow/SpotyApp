@@ -23,7 +23,7 @@
                     <span class="badge rounded-pill bg-success" *ngFor="let genre of artist.genres | slice:0:3">{{genre | titlecase}}</span>
                 </div>
                 <div class="d-grid">
-                    <a href="#" class="btn btn-outline-success btn-block">Go to artist</a>
+                    <a class="btn btn-outline-success btn-block" [routerLink]="['/artist', artist.id]">Go to artist</a>
                 </div>
                 </div>
                 <div class="card-footer text-muted text-center">

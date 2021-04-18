@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { SpotifyService } from '../../services/spotify.service';
 
 @Component({
@@ -13,7 +14,8 @@ export class SearchComponent implements OnInit {
   public loading:boolean;
 
   constructor(
-    private _spotify:SpotifyService
+    private _spotify:SpotifyService,
+    private router:Router,
   ) { }
 
   ngOnInit(): void {
@@ -33,5 +35,4 @@ export class SearchComponent implements OnInit {
     );
 
   }
-
 }

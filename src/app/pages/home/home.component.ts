@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { SpotifyService } from '../../services/spotify.service';
 
 @Component({
@@ -14,8 +15,9 @@ export class HomeComponent implements OnInit {
   public loading:boolean = true;
 
   constructor(
-    private _spotify:SpotifyService
-  ) { 
+    private _spotify:SpotifyService,
+    private router:Router,
+  ) {
     _spotify.getNewReleases().subscribe(
       (res:any) => {
         this.albums = res;
@@ -25,6 +27,10 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  goToArtist(_id:string){
+    this.router.navigateByUrl(`/artist/${_id}`);
   }
 
 }

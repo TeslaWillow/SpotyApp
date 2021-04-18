@@ -12,7 +12,7 @@
                     <span class="badge rounded-pill bg-success" *ngFor="let artist of album.artists | slice:0:3">{{artist.name}}</span>
                 </div>
                 <div class="d-grid">
-                    <a href="#" class="btn btn-outline-success btn-block">Go to album</a>
+                    <a class="btn btn-outline-success btn-block" [routerLink]="['/artist', album.artists[0].id]">Go to artist</a>
                 </div>
               </div>
               <div class="card-footer text-muted text-center">
