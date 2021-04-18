@@ -22,9 +22,9 @@ export class SearchComponent implements OnInit {
 
   }
 
-  buscar(value:string){
+  buscar(term:string){
     this.loading = true;
-    this._spotify.getArtist(value).subscribe(
+    this._spotify.getArtists(term).subscribe(
       (res:any) => {
         this.artists = res;
         this.loading = false;
