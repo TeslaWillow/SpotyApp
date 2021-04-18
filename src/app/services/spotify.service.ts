@@ -8,7 +8,7 @@ import { delay, map } from 'rxjs/operators';
 })
 export class SpotifyService {
 
-  private token:string = "BQBo9lmici_upHG2qjmrBhUnW6cpwoC7ghJAmBPaFeg7iM26p--oIQhJrVWiaShaju2RcO_2WtXX7_iHNrc";
+  private token:string = "BQCpruOl1BH_z9Dg7euHN28AXsf51X0R4kIGSKbcDki9peGUtuGlYbFaVsZJvHqB0wC6l2T9lP_uttFRGUM";
 
   constructor(
     private http:HttpClient
@@ -32,14 +32,21 @@ export class SpotifyService {
             );
   }
 
-  getArtist(_id:string){
-    return this.getQuery(`artists/${_id}`);
-  }
-
   getArtists(term:string){
     return this.getQuery(`search?q=${term}&type=artist&limit=10`)
             .pipe( 
               map( (data:any) => data.artists.items)
+            );
+  }
+
+  getArtist(_id:string){
+    return this.getQuery(`artists/${_id}`);
+  }
+
+  getTopTracks(_id:string, market:string ){
+    return this.getQuery(`artists/${_id}/top-tracks?market=${market}`)
+            .pipe( 
+              map( (data:any) => data.tracks)
             );
   }
 

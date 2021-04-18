@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 :root{
-    --spotify: #1db954
+    --spotify: #1db954;
+    --black-spotify: #191414;
 }
 
 body {
@@ -14,6 +15,10 @@ hr {
 
 .puntero {
     cursor: pointer;
+}
+
+.circle {
+    border-radius: 100%;
 }
 
 .img-circle {

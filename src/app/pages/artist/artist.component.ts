@@ -5,20 +5,22 @@ import { SpotifyService } from '../../services/spotify.service';
 @Component({
   selector: 'app-artist',
   templateUrl: './artist.component.html',
-  styles: [
-  ]
+  styleUrls: ['./artist.component.css']
 })
 export class ArtistComponent implements OnInit {
 
   title = 'artist';
+  public artist:any = {};
+  public topTracks:any[] = [];
+  public loading:boolean;
 
   constructor(
     private router:ActivatedRoute,
     private _spotify:SpotifyService,
   ) { 
     this.router.params.subscribe( (params) => {
-      console.log(params.id);
       this.getArtist(params.id);
+      this.getTopTracks(params.id);
     });
   }
 
@@ -27,13 +29,32 @@ export class ArtistComponent implements OnInit {
 
 
   getArtist(_id:string){
+    this.loading = true;
     this._spotify.getArtist(_id).subscribe(
       (res:any) => {
         console.log(res);
+        this.artist = res;
+        this.loading = false;
       },
       (err:any) => {
         console.log(err);
       },
     );
+  }
+
+  getTopTracks(_id:string){
+    this._spotify.getTopTracks(_id, "US").subscribe(
+      (res:any) => {
+        console.log(res);
+        this.topTracks = res;
+      },
+      (err:any) => {
+        console.log(err);
+      }
+    );
+  }
+
+  getURLWidget(uri:string){
+    return `https://open.spotify.com/embed?${uri}`;
   }
 }

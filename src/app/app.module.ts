@@ -11,10 +11,11 @@ import { SearchComponent } from './components/search/search.component';
 import { ArtistComponent } from './pages/artist/artist.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
+import { LoadingComponent } from './shared/loading/loading.component';
 
 //Pipes
 import { NoImagePipe } from './pipes/no-image.pipe';
-import { LoadingComponent } from './shared/loading/loading.component';
+import { SafeUrlPipe } from './pipes/safe-url.pipe';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { LoadingComponent } from './shared/loading/loading.component';
     NavbarComponent,
     PageNotFoundComponent,
     NoImagePipe,
-    LoadingComponent
+    LoadingComponent,
+    SafeUrlPipe
   ],
   imports: [
     BrowserModule,
