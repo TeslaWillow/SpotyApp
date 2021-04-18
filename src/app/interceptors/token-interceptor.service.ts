@@ -1,4 +1,4 @@
-import { HttpClient, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -6,9 +6,7 @@ import { Observable } from 'rxjs';
 
 export class TokenInterceptorService implements HttpInterceptor {
 
-  constructor(
-    private http:HttpClient
-  ) { }
+  constructor() { }
 
   intercept(
     req: HttpRequest<any>, 

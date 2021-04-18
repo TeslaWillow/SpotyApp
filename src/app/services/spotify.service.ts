@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import { map, retry } from 'rxjs/operators';
 import { environment } from '../../environments/environment.prod';
 
 @Injectable({
@@ -21,7 +21,7 @@ export class SpotifyService {
     this.getNewToken();
     const url = `https://api.spotify.com/v1/${api}`;
 
-    return this.http.get(url);
+    return this.http.get(url).pipe(retry(5));
   }
 
   getNewReleases(){
