@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { SpotifyService } from '../../services/spotify.service';
 
@@ -8,11 +8,13 @@ import { SpotifyService } from '../../services/spotify.service';
   styles: [
   ]
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent{
   title = 'Home';
   
   public albums:any[] = [];
   public loading:boolean = true;
+  public error:boolean = false;
+  public errDetails:string = '';
 
   constructor(
     private _spotify:SpotifyService,
@@ -22,11 +24,13 @@ export class HomeComponent implements OnInit {
       (res:any) => {
         this.albums = res;
         this.loading = false;
+      },
+      (err:any) => {
+        this.loading = false;
+        this.error = true;
+        this.errDetails = err.error.error.message;
       }
     );
-  }
-
-  ngOnInit(): void {
   }
 
   goToArtist(_id:string){

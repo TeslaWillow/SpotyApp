@@ -8,7 +8,7 @@ import { delay, map } from 'rxjs/operators';
 })
 export class SpotifyService {
 
-  private token:string = "BQCpruOl1BH_z9Dg7euHN28AXsf51X0R4kIGSKbcDki9peGUtuGlYbFaVsZJvHqB0wC6l2T9lP_uttFRGUM";
+  private token:string = "BQCR3t77kU6zx36_UFXIu29eBkdIR-Mhh2bXwnpee0wVIUPbjfogMQeZtGn-KWVz5EOVZwZS5yTXJmu0T_k";
 
   constructor(
     private http:HttpClient

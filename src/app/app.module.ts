@@ -12,6 +12,7 @@ import { ArtistComponent } from './pages/artist/artist.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { LoadingComponent } from './shared/loading/loading.component';
+import { ErrorComponent } from './components/error/error.component';
 
 //Pipes
 import { NoImagePipe } from './pipes/no-image.pipe';
@@ -28,7 +29,8 @@ import { SafeUrlPipe } from './pipes/safe-url.pipe';
     PageNotFoundComponent,
     NoImagePipe,
     LoadingComponent,
-    SafeUrlPipe
+    SafeUrlPipe,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,

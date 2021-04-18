@@ -4,13 +4,16 @@
                type="text" 
                (keyup)="buscar(termino.value)" 
                class="form-control" 
-               placeholder="Buscar artista">
+               placeholder="Search an artist">
     </div>
 </div>
 
 <div class="row">
     <ng-container *ngIf="loading">
         <app-loading></app-loading>
+    </ng-container>
+    <ng-container *ngIf="error">
+        <app-error [error]="errDetails"></app-error>
     </ng-container>
     <!-- Cards -->
     <ng-container *ngIf="!loading">

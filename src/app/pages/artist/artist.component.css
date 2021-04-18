@@ -3,3 +3,9 @@ img {
     max-width: 100%;
     min-width: 100%;
 }
+
+#artist_data{
+    position: -webkit-sticky;
+    position: sticky;
+    top: 15px;
+}

@@ -2,6 +2,9 @@
     <ng-container *ngIf="loading">
       <app-loading></app-loading>
     </ng-container>
+    <ng-container *ngIf="error">
+      <app-error [error]="errDetails"></app-error>
+    </ng-container>
     <ng-container *ngIf="!loading">
         <div class="col-sm-6 col-md-4 col-lg-3 animated fadeIn" *ngFor="let album of albums">
             <div class="card bg-dark my-3">
