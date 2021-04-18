@@ -32,7 +32,6 @@ export class ArtistComponent implements OnInit {
     this.loading = true;
     this._spotify.getArtist(_id).subscribe(
       (res:any) => {
-        console.log(res);
         this.artist = res;
         this.loading = false;
       },
@@ -45,7 +44,6 @@ export class ArtistComponent implements OnInit {
   getTopTracks(_id:string){
     this._spotify.getTopTracks(_id, "US").subscribe(
       (res:any) => {
-        console.log(res);
         this.topTracks = res;
       },
       (err:any) => {

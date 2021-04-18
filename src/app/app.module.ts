@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 //Route
 import { FeatureRoutingModule } from './app.routes';
@@ -17,6 +17,7 @@ import { ErrorComponent } from './components/error/error.component';
 //Pipes
 import { NoImagePipe } from './pipes/no-image.pipe';
 import { SafeUrlPipe } from './pipes/safe-url.pipe';
+import { TokenInterceptorService } from './interceptors/token-interceptor.service';
 
 
 @NgModule({
@@ -37,7 +38,13 @@ import { SafeUrlPipe } from './pipes/safe-url.pipe';
     FeatureRoutingModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

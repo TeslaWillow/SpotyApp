@@ -3,29 +3,25 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { environment } from '../../environments/environment.prod';
 
-
 @Injectable({
   providedIn: 'root'
 })
+
 export class SpotifyService {
   
   private backend_url = environment.BACKEND_URL;
-  private token:string = "";
 
   constructor(
     private http:HttpClient
   ) { 
-    console.log("Spofify Service UP")
+    this.getNewToken();
   }
 
   getQuery(api:string){
     this.getNewToken();
     const url = `https://api.spotify.com/v1/${api}`;
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${this.token}`
-    });
 
-    return this.http.get(url, { headers });
+    return this.http.get(url);
   }
 
   getNewReleases(){
@@ -53,15 +49,17 @@ export class SpotifyService {
             );
   }
 
-  private getNewToken(){
-    this.http.get(`${this.backend_url}/spotify`).subscribe(
-      (res:any) => {
-        this.token = res.access_token;
-      },
-      (err:any) => {
-        console.log(err);
-      }
-    );
+  getNewToken(){
+    return this.http.get(`${this.backend_url}/spotify`)
+      .pipe(map((data:any) => data.access_token))
+      .subscribe(
+        (res:any) => {
+          localStorage.setItem('spotyapp:token', res);
+        }, 
+        (err:any) => {
+          console.log(err);
+        }
+      );
   }
 
 }
