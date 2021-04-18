@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { map } from 'rxjs/operators';
+import { environment } from '../../environments/environment.prod';
 
-import { delay, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SpotifyService {
-
-  private token:string = "BQCR3t77kU6zx36_UFXIu29eBkdIR-Mhh2bXwnpee0wVIUPbjfogMQeZtGn-KWVz5EOVZwZS5yTXJmu0T_k";
+  
+  private backend_url = environment.BACKEND_URL;
+  private token:string = "";
 
   constructor(
     private http:HttpClient
@@ -17,6 +19,7 @@ export class SpotifyService {
   }
 
   getQuery(api:string){
+    this.getNewToken();
     const url = `https://api.spotify.com/v1/${api}`;
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.token}`
@@ -48,6 +51,17 @@ export class SpotifyService {
             .pipe( 
               map( (data:any) => data.tracks)
             );
+  }
+
+  private getNewToken(){
+    this.http.get(`${this.backend_url}/spotify`).subscribe(
+      (res:any) => {
+        this.token = res.access_token;
+      },
+      (err:any) => {
+        console.log(err);
+      }
+    );
   }
 
 }
